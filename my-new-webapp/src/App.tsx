@@ -8,6 +8,7 @@ type PizzaType = {
   immagine: string
 }
 
+
 const pizze: Array<PizzaType> = [
   {
     nome: "Margherita",
@@ -25,6 +26,21 @@ const pizze: Array<PizzaType> = [
     immagine: "https://www.scattidigusto.it/wp-content/uploads/2015/11/pizza-wurstel-patatine-pomodoro.jpg"
   },
 ];
+
+const [, pizza2] = pizze;
+// const {nomePizza1}
+
+pizze.map(p => {
+  // complessso
+  const {nome, prezzo} = p;
+})
+
+// tutte le pizza con prezzo maggiore o uguale a 7 euro
+const pizzeEconomiche1 = pizze.filter((pizza) => pizza.prezzo >= 7)
+const pizzeEconomiche2 = pizze.map(p => p.prezzo).filter(p => p >= 7)
+
+
+pizze.some((pizza) => pizza.nome === "Diavola")
 
 function Pizza(pizza: PizzaType) {
   return (

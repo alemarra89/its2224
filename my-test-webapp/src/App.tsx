@@ -28,6 +28,10 @@ const u: UserType = {
   age: 23
 }
 
+const { firstName } = u;
+// console.log(u.firstName);
+console.log(firstName);
+
 function Persona(props: UserType): JSX.Element {
   return (
     <h3>
