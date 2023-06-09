@@ -32,6 +32,25 @@ function App() {
       });
   };
 
+  const caricaAltriPokemon = () => {
+    if (pokedex) {
+      fetch(pokedex.next)
+        .then((res) => res.json())
+        .then((result: Pokedex) => {
+          console.log("result", result);
+          // setPokedex(result);
+          // setPokedex({...result});
+          setPokedex({
+            ...result,
+            results: [
+              ...pokedex.results,
+              ...result.results
+            ]
+          });
+        });
+    }
+  };
+
   useEffect(() => {
     getListaPokemon();
   }, []);
@@ -39,7 +58,16 @@ function App() {
   return (
     <div className="App">
       <div style={{ display: "flex" }}>
-        <div style={{ flex: 2, borderRight: "1px solid #CCC", backgroundImage: 'url("https://images7.alphacoders.com/130/1304684.png")' }}>
+        <div
+          style={{
+            flex: 2,
+            borderRight: "1px solid #CCC",
+            height: "100vh",
+            overflowY: "scroll",
+            backgroundImage:
+              'url("https://images7.alphacoders.com/130/1304684.png")',
+          }}
+        >
           <h2>Lista Pokemon</h2>
           <div style={{ padding: 20 }}>
             {pokedex?.results.map((pokemon, index) => (
@@ -53,7 +81,7 @@ function App() {
                   cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
-                  backgroundColor: 'rgba(255,255,255,.8)'
+                  backgroundColor: "rgba(255,255,255,.8)",
                 }}
                 onClick={() => getDettaglioPokemon(pokemon)}
               >
@@ -66,6 +94,10 @@ function App() {
                 </span>
               </div>
             ))}
+            <hr />
+            <div>
+              <button onClick={caricaAltriPokemon}>Carica altri Pokemon</button>
+            </div>
           </div>
         </div>
         <div style={{ flex: 1 }}>
