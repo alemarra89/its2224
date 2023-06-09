@@ -39,20 +39,34 @@ function App() {
   return (
     <div className="App">
       <div style={{ display: "flex" }}>
-        <div style={{ flex: 2, borderRight: "1px solid #CCC" }}>
+        <div style={{ flex: 2, borderRight: "1px solid #CCC", backgroundImage: 'url("https://images7.alphacoders.com/130/1304684.png")' }}>
           <h2>Lista Pokemon</h2>
-          {pokedex?.results.map((pokemon, index) => (
-            <div
-              style={{ textAlign: "left" }}
-              onClick={() => getDettaglioPokemon(pokemon)}
-            >
-              <img
-                style={{ width: 50 }}
-                src={BASE_URL_IMG + (index + 1) + ".png"}
-              />
-              {index + 1}. {pokemon.name}
-            </div>
-          ))}
+          <div style={{ padding: 20 }}>
+            {pokedex?.results.map((pokemon, index) => (
+              <div
+                style={{
+                  textAlign: "left",
+                  padding: 20,
+                  border: "1px solid #CCC",
+                  borderRadius: 20,
+                  marginBottom: 5,
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  backgroundColor: 'rgba(255,255,255,.8)'
+                }}
+                onClick={() => getDettaglioPokemon(pokemon)}
+              >
+                <img
+                  style={{ width: 50 }}
+                  src={BASE_URL_IMG + (index + 1) + ".png"}
+                />
+                <span style={{ marginLeft: 10, textTransform: "capitalize" }}>
+                  #{index + 1}. {pokemon.name}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
         <div style={{ flex: 1 }}>
           {!dettaglioPokemon && (
@@ -63,8 +77,14 @@ function App() {
           )}
           {dettaglioPokemon && (
             <div>
-              <h2>{dettaglioPokemon.name}</h2>
-              <img style={{ width: 250 }} src={BASE_URL_IMG + (dettaglioPokemon.id) + ".png"} alt="Pokedex" />
+              <h2 style={{ textTransform: "capitalize" }}>
+                {dettaglioPokemon.name}
+              </h2>
+              <img
+                style={{ width: 250 }}
+                src={BASE_URL_IMG + dettaglioPokemon.id + ".png"}
+                alt="Pokedex"
+              />
               <div>
                 <p>Altezza: {dettaglioPokemon.height} cm</p>
                 <p>Peso: {dettaglioPokemon.weight} lbs</p>
