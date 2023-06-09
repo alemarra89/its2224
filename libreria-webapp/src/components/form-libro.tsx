@@ -28,7 +28,7 @@ function FormLibro(props: Props) {
       <input type='text' placeholder='Titolo' value={titolo} onChange={onChangeTitolo} />
       <input type='text' placeholder='Autore' value={autore} onChange={onChangeAutore} />
       <input type='number' placeholder='Prezzo' value={prezzo} onChange={onChangePrezzo} />
-      <button onClick={() => aggiungiLibro({titolo, autore, prezzo})}>Aggiungi libro</button>
+      <button onClick={() => aggiungiLibro({titolo, autore, prezzo})} className="btn btn-primary">Aggiungi libro</button>
     </div>
   )
 }
