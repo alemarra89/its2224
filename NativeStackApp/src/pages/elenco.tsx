@@ -24,15 +24,15 @@ function Elenco(props: Props) {
   useEffect(getUtenti, []);
 
   const cambiaPagina = (utenteSelezionato: Utente) => {
-      props.navigation.navigate("Dettaglio", {
-        utente: utenteSelezionato
-      });
+    props.navigation.navigate('Dettaglio', {
+      utente: utenteSelezionato,
+    });
   };
 
   const renderItem = ({item}: {item: Utente}) => {
     return (
       <TouchableOpacity onPress={() => cambiaPagina(item)}>
-        <View style={{margin: 10, padding: 10}}>
+        <View style={{margin: 10, padding: 10, backgroundColor: 'rgba(255,255,255,.9)'}}>
           <Text style={{fontSize: 20}}>
             {item.name.first} {item.name.last}
           </Text>
@@ -43,7 +43,13 @@ function Elenco(props: Props) {
     );
   };
 
-  return <FlatList data={utenti} renderItem={renderItem} />;
+  return (
+    <FlatList
+      data={utenti}
+      renderItem={renderItem}
+      keyExtractor={(_, index) => 'utente-' + index}
+    />
+  );
 }
 
 export default Elenco;
